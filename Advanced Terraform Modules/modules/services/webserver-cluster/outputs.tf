@@ -1,9 +1,9 @@
 output "alb_dns_name" {
   value       = aws_lb.example.dns_name
-  description = "The domain name of the load balancer"
+  description = "The domain name of the load balancer - visible after creation"
 }
 
 output "asg_name" {
   value       = aws_autoscaling_group.example.name
-  description = "The name of the Auto Scaling Group"
+  description = "The name of the Auto Scaling Group - visible after creation"
 }
