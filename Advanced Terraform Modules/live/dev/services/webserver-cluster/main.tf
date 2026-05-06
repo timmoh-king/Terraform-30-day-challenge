@@ -14,7 +14,7 @@ data "aws_subnets" "default" {
 }
 
 module "webserver_cluster" {
-  source = "github.com/timmoh-king/Terraform-30-day-challenge?ref=v0.0.1"
+  source = "github.com/timmoh-king/Terraform-30-day-challenge?ref=v0.0.2"
 
   cluster_name  = "webservers-dev"
   instance_type = "t2.micro"
