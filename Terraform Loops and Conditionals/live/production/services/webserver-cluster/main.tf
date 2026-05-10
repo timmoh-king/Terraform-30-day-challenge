@@ -16,12 +16,14 @@ data "aws_subnets" "default" {
 }
 
 module "webserver_cluster" {
-  source = "github.com/timmoh-king/Terraform-30-day-challenge?ref=v0.0.1"
+  source = "github.com/timmoh-king/Terraform-30-day-challenge?ref=v0.0.3"
 
-  cluster_name  = "webservers-production"
-  instance_type = "t2.medium"
-  min_size      = 4
-  max_size      = 10
-  vpc_id        = coalesce(var.vpc_id, data.aws_vpc.default.id)
-  subnet_ids    = length(var.subnet_ids) > 0 ? var.subnet_ids : data.aws_subnets.default.ids
+  cluster_name       = "webservers-production"
+  environment        = "production"
+  min_size           = 4
+  max_size           = 10
+  enable_autoscaling = true
+
+  vpc_id     = coalesce(var.vpc_id, data.aws_vpc.default.id)
+  subnet_ids = length(var.subnet_ids) > 0 ? var.subnet_ids : data.aws_subnets.default.ids
 }

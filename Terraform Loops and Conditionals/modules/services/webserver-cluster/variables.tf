@@ -3,10 +3,16 @@ variable "cluster_name" {
   type        = string
 }
 
-variable "instance_type" {
-  description = "EC2 instance type for the cluster"
+variable "environment" {
+  description = "Deployment environment"
   type        = string
-  default     = "t2.micro"
+  default     = "dev"
+}
+
+variable "instance_type" {
+  description = "EC2 instance type override"
+  type        = string
+  default     = null
 }
 
 variable "vpc_id" {
@@ -15,7 +21,7 @@ variable "vpc_id" {
 }
 
 variable "subnet_ids" {
-  description = "The subnet IDs where the ALB and Auto Scaling Group will be deployed"
+  description = "The subnet IDs where the ALB and ASG will be deployed"
   type        = list(string)
 }
 
@@ -33,4 +39,16 @@ variable "server_port" {
   description = "Port the server uses for HTTP"
   type        = number
   default     = 8080
+}
+
+variable "enable_autoscaling" {
+  description = "Enable autoscaling policies"
+  type        = bool
+  default     = true
+}
+
+variable "ingress_ports" {
+  description = "Ports allowed into the ALB"
+  type        = set(number)
+  default     = [80, 443]
 }
